@@ -29,13 +29,14 @@ const Decryption =  async( req, res ) => {
           const decipher = crypto.createDecipheriv(algorithm, key, iv);
           const remainingStream = fs.createReadStream(inputPath, { start: 16 });
           remainingStream.pipe(decipher).pipe(fs.createWriteStream(outputPath));
-          remainingStream.on('end', () => {
+          remainingStream.on('end', async () => {
             console.log(`File decrypted successfully: ${outputPath}`);
-            fs.readFile(outputPath, 'utf8', (err, data) => {
+             fs.readFile(outputPath, 'utf8', async(err, data) => {
                 if (err) {
                     console.error('Error reading file:', err);
                     return res.status(500).json({ message: 'File Read Error' });;
                 }
+                console.log(data)
                 return res.send({type:fileData.type ,name:fileData.name,fileContent:data})
             });
             
