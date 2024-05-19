@@ -86,7 +86,7 @@ const UserUploadChartScreen = () => {
                           
                           <td className="px-6 max-w-[350px] truncate py-4 whitespace-nowrap text-sm text-gray-800">{items.name}</td> 
                           <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">{items.keyword}</td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">{items.size+ ' kb'}</td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">{(items.size/1024).toFixed(4)+ ' kb'}</td>
                           
                           <td className={`flex items-center justify-center px-4 py-4 whitespace-nowrap text-sm text-gray-800`}>
                             {
