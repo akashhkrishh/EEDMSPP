@@ -31,16 +31,20 @@ const Decryption =  async( req, res ) => {
           remainingStream.pipe(decipher).pipe(fs.createWriteStream(outputPath));
           remainingStream.on('end', () => {
             console.log(`File decrypted successfully: ${outputPath}`);
-            const fileContent = fs.readFileSync(outputPath, 'utf8');
-            console.log(fileContent);
-            return res.send({type:fileData.type ,name:fileData.name,fileContent:fileContent})
+            fs.readFile(outputPath, 'utf8', (err, data) => {
+                if (err) {
+                    console.error('Error reading file:', err);
+                    return res.status(500).json({ message: 'File Read Error' });;
+                }
+                return res.send({type:fileData.type ,name:fileData.name,fileContent:data})
+            });
+            
           });
         });
     } catch (err) {
         console.log(err)
         console.log('Encryption Failed!');
-        res.status(500).json({ message: 'Server error.' });
-        return null
+        return res.status(500).json({ message: 'Server error.' });
     }
 }
 
