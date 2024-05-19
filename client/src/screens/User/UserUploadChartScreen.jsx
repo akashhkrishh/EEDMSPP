@@ -108,6 +108,7 @@ const UserUploadChartScreen = () => {
                               (items.isAttacked == 'safe') 
                               && <button onClick={()=>{
                                 setViewModel(true)
+                                setContent(null)
                                 setFileID(items._id)
                               }} className='text-white px-6 py-1 bg-cblack hover:bg-black'>View</button>
                             }
