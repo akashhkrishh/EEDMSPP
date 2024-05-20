@@ -21,6 +21,7 @@ router.get("/",(req,res)=>{
   res.send('User');
 })
 
+
 router.get("/name",tokenVerify.validUser,(req,res)=>{
   res.send({name:req.user.name});
 })

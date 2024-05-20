@@ -21,18 +21,35 @@ const UserUploadChartScreen = () => {
       fileid:fileId,
     }).then((res)=>{
       setContent(res.data)
+      console.log(res.data.filepath)
       toast.success("Decryption Successful")
     }).catch((err)=>{
       toast.error(err.response.data.message)
     })
   }
-  const downloadFile = () => {
-    const element = document.createElement("a");
-    const file = new Blob([fileContent.fileContent], { type: fileContent.type });
-    element.href = URL.createObjectURL(file);
-    element.download = fileContent.name;
-    document.body.appendChild(element); // Required for this to work in Firefox
-    element.click();
+  const downloadFile = async() => {
+    try {
+      const params = {
+        fileName: fileContent.filepath // Example query parameter
+      };
+      const response = await apiHelper.get('/download', {
+        params: params,
+        responseType: 'blob', // Important to specify the response type as blob
+      });
+     
+
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', fileContent.name); // Set the file name
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+   
+    } catch (error) {
+      console.error('Download error:', error);
+    }
     setFileID(null)
     setKey(null)
     setContent(null)
@@ -49,8 +66,10 @@ const UserUploadChartScreen = () => {
       setAttackFile(res.data)
     })
   }
+ 
   useEffect(()=>{
     fetchData();
+    
   },[]);
 
   return (

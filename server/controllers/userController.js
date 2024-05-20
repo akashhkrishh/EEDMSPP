@@ -12,6 +12,7 @@ const SendMail = require('../utils/SendMail');
 
 
 exports.register = async(req, res) =>{
+    
     try {
         const { name, username, email, gender, place, pincode, phone ,password } = req.body;
         const existingEmail = await UserModel.findOne({ email });

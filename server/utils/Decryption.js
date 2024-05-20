@@ -36,8 +36,7 @@ const Decryption =  async( req, res ) => {
                     console.error('Error reading file:', err);
                     return res.status(500).json({ message: 'File Read Error' });;
                 }
-                console.log(data)
-                return res.send({type:fileData.type ,name:fileData.name,fileContent:data})
+                return res.send({type:fileData.type ,name:fileData.name,filepath:outputPath})
             });
             
           });
