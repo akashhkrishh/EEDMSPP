@@ -17,6 +17,7 @@ const UserRegister = ({handleLogin}) => {
       password:'',
     })
     const handleChange = (e) => {
+      console.log(formData)
       const { name, value } = e.target;
       setForm((prevData) => ({
         ...prevData,
@@ -83,7 +84,11 @@ const UserRegister = ({handleLogin}) => {
               </div>
               <div className='w-full flex flex-col gap'>
                 <label className='py-3 w-full' htmlFor="email">Gender</label>
-                <input className='py-3 w-full outline-none px-4 border' onChange={handleChange}  type="text" name="gender" id="gender" />
+                <select defaultValue={''} className='py-3 w-full outline-none px-4 border' onChange={handleChange}  type="text" name="gender" id="gender">
+                  <option value="" disabled>Choose the Gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
               </div>
               <div className='w-full flex flex-col gap'>
                 <label className='py-3 w-full' htmlFor="email">Place</label>
