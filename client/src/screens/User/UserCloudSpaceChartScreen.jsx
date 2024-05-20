@@ -10,7 +10,7 @@ const UserCloudSpaceChartScreen = () => {
   const fetchData = async() =>{
     await apiHelper.get('/api/user/myfilesize')
     .then((res)=>{
-      setCount(res.data?.count)
+      setCount(res.data)
     }).catch((err)=>{
       toast.error(JSON.stringify(err.response.data))
     })
@@ -32,9 +32,9 @@ const UserCloudSpaceChartScreen = () => {
               <img className='h-full' src={CloudSpace_2} alt="" />
             </div>
             <div className="w-1/2 text-2xl  flex flex-col justify-center gap-4 h-full">
-              <h1>Used Space : <span className='font-medium text-green-600'>{sizeConvert(count)}</span></h1>
-              <h1>Available Space : <span className='font-medium '>{count+" MB"}</span></h1>
-              <h1>Total Space : <span className='font-medium '>{'1 GB'}</span></h1>
+              <h1>Used Space : <span className='font-medium text-green-600'>{count?.KB.toFixed(4)+ ' MB'}</span></h1>
+              <h1>Available Space : <span className='font-medium '>{count?.RemainingSpace.toFixed(4)+ ' MB'}</span></h1>
+              <h1>Total Space : <span className='font-medium '>{count?.Total.toFixed(0)+ ' MB'}</span></h1>
               
             </div>
 
