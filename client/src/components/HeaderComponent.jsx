@@ -1,9 +1,13 @@
 import React from 'react'
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const HeaderComponent = () => {
+  const navigate  = useNavigate();
   const handleLogout = () =>{
     toast.success('Logout Sucessfull');
+    localStorage.clear();
+    navigate('/')
   }
   const title = 'Enabling Efficient Data Mining with Strong Privacy Protection in Cloud Computing';
   return (

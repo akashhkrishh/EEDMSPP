@@ -113,11 +113,10 @@ const RootAttackerScreen = () => {
           </div>
 
         </div>
-        <div className='p-4 break-words bg-white shadow-md text-cblack w-2/3 overflow-auto h-[76vh]'>
-          <p className='w-full font-mono h-full overflow-auto'>
+        <div className='p-4 break-words bg-white shadow-md text-cblack w-2/3 max-w-[820px] overflow-auto h-[76vh]'>
+          
           {fileDetails.fileContent}
-          {fileDetails.fileContent}
-          </p>
+      
           
 
         </div>
