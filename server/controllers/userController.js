@@ -128,10 +128,9 @@ exports.myfilesize = async(req, res) =>{
             count = Number(count)+ Number(AllList[i].size);
         }
         const KB = (count/1024)/1024;
-        const RemainingSpace = ((1024 * 1024) - KB)/1024;
         const Total = 1024
-        console.log(KB, RemainingSpace)
-        res.send({KB,RemainingSpace,Total})
+        
+        res.send({KB,Total})
 
     } catch (error) {
         console.log(error)
