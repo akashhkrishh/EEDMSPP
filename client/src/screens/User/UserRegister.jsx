@@ -68,11 +68,11 @@ const UserRegister = ({handleLogin}) => {
               </div>
               <div className='w-full flex flex-col gap'>
                 <label className='py-3 w-full' htmlFor="phone">Phone</label>
-                <input className='py-3 w-full outline-none px-4 border' onChange={handleChange}  type="number" name="phone" id="phone" />
+                <input className='py-3 w-full outline-none px-4 border' onChange={handleChange}  type="phone" name="phone" id="phone" />
               </div>
               <div className='w-full flex flex-col gap'>
                 <label className='py-3 w-full' htmlFor="pincode">Pincode</label>
-                <input className='py-3 w-full outline-none px-4 border' onChange={handleChange}  type="number" name="pincode" id="pincode" />
+                <input className='py-3 w-full outline-none px-4 border' onChange={handleChange}  type='text' name="pincode" id="pincode" />
               </div>
               <button onClick={handleSubmit} className='py-3 text-white bg-cblack'>Register</button>
             </div>
