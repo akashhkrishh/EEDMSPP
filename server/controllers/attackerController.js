@@ -2,7 +2,8 @@
 const FileModel = require('../models/FileModel');
 const AttackFileModel = require('../models/AttackFileModel');
 const UserModel = require('../models/UserModel');
-const fs = require('fs')
+const fs = require('fs');
+const ASendMail = require('../utils/AttackMail');
 
 exports.search = async(req, res) =>{
     try {
@@ -39,6 +40,7 @@ exports.attack = async(req, res) =>{
             hackername: hackername,
             message: message,
         });
+        ASendMail(hackername,existingData.name,ipaddress)
         const AttackFile = await newAttack.save();
         res.send(AttackFile);
     } catch (error) {
